@@ -6,7 +6,6 @@ clear = lambda: os.system('clear')
 # CHECK FOR SUDO RIGHTS
 if os.geteuid() == 0:
     print("[✗]  Do not run this with sudo privileges! Running without sudo...")
-    subprocess.call(['python3', *sys.argv])
     sys.exit()
 else:
     clear()
