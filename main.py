@@ -3,11 +3,16 @@ from configparser import ConfigParser
 
 clear = lambda: os.system('clear')
 
-# CHECK FOR SUDO RIGHTS
-if os.geteuid() == 0:
-    print("\033[91m [✗]  Don't run this with sudo privileges!")
+# CHECK FOR SUDO RIGHTS AND UPDATE NEEDED DEPENDENCIES
+if os.geteuid() != 0:
+    print("\033[91m [✗]  Please run this with sudo privileges.")
     sys.exit()
 else:
+    clear()
+    print("\n\033[92m[✓]\033[0m  Got sudo privileges")
+    os.system('sudo apt install python3 python3-pip -y && pip3 install send2trash ConfigParser')
+
+    input("\nPress Enter to start the configuration process...")
     clear()
     print("\033[1m\033[93m>_  downbloats configuration\033[0m")
 
