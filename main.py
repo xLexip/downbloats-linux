@@ -6,8 +6,7 @@ clear = lambda: os.system('clear')
 # CHECK FOR SUDO RIGHTS AND UPDATE NEEDED DEPENDENCIES
 if os.geteuid() != 0:
     print("\033[91m [✗]  Please run this with sudo privileges.")
-    sys.exit()
-else:
+    subprocess.call(['sudo', 'echo '])
     clear()
     print("\n\033[92m[✓]\033[0m  Got sudo privileges")
     os.system('sudo apt install python3 python3-pip -y && pip3 install send2trash ConfigParser')
