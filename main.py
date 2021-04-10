@@ -101,4 +101,4 @@ input("Press Enter to continue...")
 print("\033[F\033[K");
 
 # RUN CLEANUP
-os.system('python3 clean.py')
+os.system('python3 '+str(pathlib.Path(__file__).parent.absolute())+'/clean.py')
