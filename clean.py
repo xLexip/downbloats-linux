@@ -25,7 +25,12 @@ def checkDirectory(pPath):  #CHECK PATH RECURSIVE
 
 cleanedSth = False
 clear = lambda: os.system('clear')
-print("\033[1m\033[96m>_  downbloats cleaning\033[0m")
+clear()
+
+# Remove the above line to avoid multiple printing
+print("\033[F\033[F\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
+
+print("\033[F\033[1m\033[96m>_  downbloats cleaning\033[0m")
 
 
 # READ CONFIG
