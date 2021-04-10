@@ -13,7 +13,7 @@ if os.geteuid() != 0:
 
     input("\nPress Enter to start the configuration process...")
     clear()
-    print("\033[1m\033[93m>_  downbloats configuration\033[0m")
+    print("\033[1m\033[93m>_  downbloats configuration\033[0m\n")
 
 #CREATE CONFIG
 config_object = ConfigParser()
@@ -29,11 +29,13 @@ with open('config.ini', 'w') as conf:
 # CONFIG PROMPT
 sel = "100"
 while int(sel) > 5 or int(sel) < 1:
-    sel = input("\n\033[94m[?]\033[0m The clean-up process should trash all files, that have not been accessed for at least:\n[1] One hour\n[2] Three hours\n[3] One day\n[4] Three days\n[5] One week\n\nYour choice? (1/2/3/4/5) ")
+    sel = input("\033[94m[?]\033[0m The clean-up process should trash all files, that have not been accessed for at least:\n[1] One hour\n[2] Three hours\n[3] One day\n[4] Three days\n[5] One week\n\nYour choice? (1/2/3/4/5) \n")
     try: 
         int(sel)
     except ValueError as e:
         sel = "100"
+        # Remove the above line to avoid multiple printing
+        print("\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
 
 clear()
 print("\033[1m\033[93m>_  downbloats configuration\033[0m")
@@ -68,11 +70,13 @@ with open('config.ini', 'w') as conf:
 # SCHEDULING PROMPT
 sel = 100;
 while int(sel) > 3 or int(sel) < 1:
-    sel = input("\033[94m[?]\033[0m Select how you want to schedule the clean-up:\n[1] Not at all\n[2] On system start-up\n[3] On system start-up and every hour (recommended)\n\nYour choice? (1/2/3)")
+    sel = input("\033[94m[?]\033[0m Now select how you want to schedule the clean-up:\n[1] Not at all.\n[2] On system start-up.\n[3] On system start-up and every hour. (recommended)\n\nYour choice? (1/2/3) \n")
     try: 
         int(sel)
     except ValueError as e:
         sel = "100"
+        # Remove the above line to avoid multiple printing
+        print("\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
 
 clear()
 print("\033[1m\033[93m>_  \033[0m\033[1m\033[1m\033[93m downbloats configuration\033[0m")
@@ -94,7 +98,7 @@ elif sel.lower() == "3":
     print("\033[92m[✓]\033[0m  The clean-up will be run on start-up and every hour at half past.\n")
 
 input("Press Enter to continue...")
-print("\033[F\033[K                           ");
+print("\033[F\033[K");
 
 # RUN CLEANUP
 os.system('python3 clean.py')
