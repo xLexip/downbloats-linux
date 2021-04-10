@@ -8,10 +8,10 @@ if os.geteuid() != 0:
     print("\033[91m [✗]  Please run this with sudo privileges.")
     subprocess.call(['sudo', 'echo '])
     clear()
-    print("\n\033[92m[✓]\033[0m  Got sudo privileges")
+    print("\033[F\033[F\n\033[92m[✓]\033[0m  Got sudo privileges\n")
     os.system('sudo apt install python3 python3-pip -y && pip3 install send2trash ConfigParser')
 
-    input("\nPress Enter to start the configuration process...")
+    input("\nUp to date. Press Enter to start the configuration process.")
     clear()
     print("\033[1m\033[93m>_  downbloats configuration\033[0m\n")
 
@@ -19,7 +19,7 @@ if os.geteuid() != 0:
 config_object = ConfigParser()
 
 config_object["CONFIG"] = {
-    "trashAfter": "",     #in seconds
+    "trashAfter": "",     # in seconds
 }
 
 with open('config.ini', 'w') as conf:
@@ -35,7 +35,7 @@ while int(sel) > 5 or int(sel) < 1:
     except ValueError as e:
         sel = "100"
         # Remove the above line to avoid multiple printing
-        print("\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
+        print("\033[F\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
 
 clear()
 print("\033[1m\033[93m>_  downbloats configuration\033[0m")
@@ -43,7 +43,7 @@ print("\033[1m\033[93m>_  downbloats configuration\033[0m")
 config_object = ConfigParser()
 config_object.read("config.ini")
 userinfo = config_object["CONFIG"]
-choice1 = "\n\033[92m[✓]\033[0m  The clean-up process will trash all files, that have not been accessed for"
+choice1 = "\n\033[92m[✓]\033[0m  The clean-up process will trash all files, that have not been accessed for "
 
 if int(sel) == 1:
     choice1 += "one hour.\n"
@@ -79,7 +79,7 @@ while int(sel) > 3 or int(sel) < 1:
         print("\033[F\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K\033[F\033[K");
 
 clear()
-print("\033[1m\033[93m>_  \033[0m\033[1m\033[1m\033[93m downbloats configuration\033[0m")
+print("\033[1m\033[93m>_  \033[0m\033[1m\033[1m\033[93mdownbloats configuration\033[0m")
 print(choice1)
 
 if sel.lower() == "1":
@@ -90,12 +90,12 @@ if sel.lower() == "1":
 elif sel.lower() == "2":
     os.system('crontab -u '+getpass.getuser()+' -l | grep -v "python3 '+str(pathlib.Path().absolute())+'/clean.py" | crontab -u '+getpass.getuser()+' -')
     os.system('(crontab -l ; echo "@reboot python3 '+str(pathlib.Path().absolute())+'/clean.py &") | sort - | uniq - | crontab -')
-    print("\033[92m[✓]\033[0m  The clean-up will be run on start-up.\n")
+    print("\033[92m[✓]\033[0m  The clean-up will be run on system start-up.\n")
 
 elif sel.lower() == "3":
     os.system('(crontab -l ; echo "@reboot python3 '+str(pathlib.Path().absolute())+'/clean.py &") | sort - | uniq - | crontab -')
     os.system('(crontab -l ; echo "30 * * * * python3 '+str(pathlib.Path().absolute())+'/clean.py") | sort - | uniq - | crontab -')
-    print("\033[92m[✓]\033[0m  The clean-up will be run on start-up and every hour at half past.\n")
+    print("\033[92m[✓]\033[0m  The clean-up will be run on system start-up and every hour at half past.\n")
 
 input("Press Enter to continue...")
 print("\033[F\033[K");
